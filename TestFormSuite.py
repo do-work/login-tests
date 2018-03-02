@@ -1,10 +1,11 @@
 import unittest
 from TestFormFields import TestFormFields
-# from TestFormFieldsExceptions import
+from TestFormFieldsExceptions import TestFormFieldsExceptions
 from TestFormSuccess import TestFormSuccess
 
 # load these tests
 form_fields_test = unittest.TestLoader().loadTestsFromTestCase(TestFormFields)
+form_fields_exception_test = unittest.TestLoader().loadTestsFromTestCase(TestFormFieldsExceptions)
 form_success_page_test = unittest.TestLoader().loadTestsFromTestCase(TestFormSuccess)
 
 # create the test suite
