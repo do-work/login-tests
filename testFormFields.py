@@ -4,15 +4,15 @@ from selenium import webdriver
 
 
 class SearchTest(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.driver = webdriver.Chrome()
+        cls.driver.implicitly_wait(15)
+        cls.driver.maximize_window()
 
-    def setUp(self):
-        self.driver = webdriver.Chrome()
-        self.driver.implicitly_wait(15)
-        self.driver.maximize_window()
-
-        # todo create function to pass in a page
+        # todo create function to pass in any page
         local_path_form = os.getcwd() + "/loginForm.html"
-        self.driver.get("file:// {}".format(local_path_form))
+        cls.driver.get("file:// {}".format(local_path_form))
 
     def test_login_is_true(self):
         self.search_login = self.driver.find_element_by_name("username")
@@ -26,8 +26,9 @@ class SearchTest(unittest.TestCase):
         self.search_submit = self.driver.find_element_by_xpath("//input[@type='submit']")
         self.assertTrue(self.search_submit)
 
-    def tearDown(self):
-        self.driver.quit()
+    @classmethod
+    def tearDownClass(cls):
+        cls.driver.quit()
 
     if __name__ == '__main__':
         unittest.main(verbosity=2)
