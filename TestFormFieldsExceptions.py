@@ -5,6 +5,7 @@ from ddt import ddt, data
 
 @ddt
 class TestFormFieldsExceptions(unittest.TestCase):
+
     @classmethod
     def setUpClass(cls):
         cls.driver = webdriver.Chrome()
@@ -19,24 +20,24 @@ class TestFormFieldsExceptions(unittest.TestCase):
     # todo create method that accepts various data input types
     @data("test1", "test2")
     def test_username_field_exceptions(self, user_value):
-        self.username_field = self.driver.find_element_by_name("username")
-        self.username_field.clear()
+        username_field = self.driver.find_element_by_name("username")
+        username_field.clear()
 
         # this sends the keys as listed above in the data decorator
-        self.username_field.send_keys(user_value)
-        self.user_input_username = self.username_field.get_attribute("value")
+        username_field.send_keys(user_value)
+        user_input_username = username_field.get_attribute("value")
 
-        self.assertEqual(user_value, self.user_input_username)
+        self.assertEqual(user_value, user_input_username)
 
     @data("test1-pass", "test2-pass")
     def test_password_field_exceptions(self, user_value):
-        self.password_field = self.driver.find_element_by_name("password")
-        self.username_field.clear()
+        password_field = self.driver.find_element_by_name("password")
+        password_field.clear()
 
-        self.password_field.send_keys(user_value)
-        self.user_input_password = self.passsword_field.get_attribute("value")
+        password_field.send_keys(user_value)
+        user_input_password = password_field.get_attribute("value")
 
-        self.assertEqual(user_value, self.user_input_password)
+        self.assertEqual(user_value, user_input_password)
 
     @classmethod
     def tearDownClass(cls):

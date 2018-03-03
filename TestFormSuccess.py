@@ -16,7 +16,7 @@ class TestFormSuccess(unittest.TestCase):
         cls.driver.get("localhost:8000//{}".format(local_path_form))
 
     def test_form_success(self):
-        self.submit_button = self.driver.find_element_by_xpath("//input[@type='submit']").click()
+        submit_button = self.driver.find_element_by_xpath("//input[@type='submit']").click()
 
         page_header = requests.get(self.driver.current_url)
         self.assertEqual(page_header.status_code, 200)
